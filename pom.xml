@@ -24,7 +24,7 @@ License along with p2presenter.  If not, see <http://www.gnu.org/licenses/>.
 	<groupId>org.p2presenter</groupId>
 	<artifactId>p2presenter-philosophers</artifactId>
 	<packaging>jar</packaging>
-	<name>p2presenter</name>
+	<name>p2presenter-philosophers</name>
 	<version>0.1-SNAPSHOT</version>
 	<build>
 		<pluginManagement>
@@ -42,7 +42,7 @@ License along with p2presenter.  If not, see <http://www.gnu.org/licenses/>.
 	<dependencies>
 		<dependency>
 			<groupId>org.p2presenter</groupId>
-			<artifactId>p2presenter</artifactId>
+			<artifactId>p2presenter-interactivity</artifactId>
 			<version>0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
