@@ -1,5 +1,3 @@
-/* $Id$ */
-
 package edu.uoregon.cs.p2presenter.philosopher.host;
 
 import java.io.Serializable;
@@ -14,35 +12,35 @@ import edu.uoregon.cs.p2presenter.philosopher.Table;
 
 public class PhilosopherControllerImpl implements Philosopher, Serializable {
 	private Table table;
-	
+
 	// XXX supposed to support more than one
 	private transient PhilosopherStateListener philosopherStateListener;
-	
+
 	public PhilosopherControllerImpl(Table table) {
 		this.table = table;
 	}
-	
+
 	public synchronized void reset(Chopstick leftChopstick, Chopstick rightChopstick) {
 		leftHand.reset(leftChopstick);
 		rightHand.reset(rightChopstick);
 		stateChanged();
 	}
-	
+
 	private HandImpl leftHand = new HandImpl();
 	private HandImpl rightHand = new HandImpl();
-	
+
 	private class HandImpl implements Hand, Serializable {
 		private State state = State.EMPTY;
 		private Chopstick chopstick;
-		
+
 		public State getState() {
 			return state;
 		}
-		
+
 		public Chopstick getChopstick() {
 			return chopstick;
 		}
-		
+
 		public void takeChopstick() {
 			synchronized (chopstick) {
 				if (state == State.EMPTY) {
@@ -57,13 +55,13 @@ public class PhilosopherControllerImpl implements Philosopher, Serializable {
 				}
 			}
 		}
-		
+
 		private void doTakeChopstick() {
 			chopstick.hold(PhilosopherControllerImpl.this);
 			state = State.HOLDING;
 			stateChanged();
 		}
-		
+
 		public synchronized void releaseChopstick() {
 			if (state == State.HOLDING) {
 				chopstick.release(PhilosopherControllerImpl.this);
@@ -71,14 +69,14 @@ public class PhilosopherControllerImpl implements Philosopher, Serializable {
 				stateChanged();
 			}
 		}
-		
+
 		private void reset(Chopstick chopstick) {
 			this.chopstick = chopstick;
 			this.state = State.EMPTY;
 		}
-		
+
 		private class WaitingHandThread extends Thread {
-						
+
 			@Override
 			public void run() {
 				synchronized (chopstick) {
@@ -92,12 +90,12 @@ public class PhilosopherControllerImpl implements Philosopher, Serializable {
 							// TODO maybe do something
 						}
 					}
-					
+
 					doTakeChopstick();
 				}
 			}
 		}
-		
+
 	}
 
 	public synchronized State getState() {
@@ -112,21 +110,21 @@ public class PhilosopherControllerImpl implements Philosopher, Serializable {
 				return State.EATING;
 			}
 		}
-		
+
 		return State.INTERMEDIATE;
 	}
-	
+
 	public Hand getLeftHand() {
 		return leftHand;
 	}
-	
+
 	public Hand getRightHand() {
 		return rightHand;
 	}
-	
+
 	private void stateChanged() {
 		table.philosopherStateChanged(this, getState(), leftHand.getState(), rightHand.getState());
-		
+
 		if (philosopherStateListener != null) {
 			this.philosopherStateListener.philosopherStateChanged(this, getState(), leftHand.getState(), rightHand.getState());
 		}

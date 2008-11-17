@@ -1,5 +1,3 @@
-/* $Id$ */
-
 package edu.uoregon.cs.p2presenter.philosopher.participant;
 
 import java.awt.GridBagLayout;
@@ -19,7 +17,7 @@ public class SimplePhilosopherInterface extends JPanel implements InteractivityC
 	private JButton takeRightChopstickButton = null;
 	private JButton releaseRightChopstickButton = null;
 	private JButton releaseLeftChopstickButton = null;
-	
+
 	private Philosopher.Hand leftHand;
 	private Philosopher.Hand rightHand;
 
@@ -30,7 +28,7 @@ public class SimplePhilosopherInterface extends JPanel implements InteractivityC
 		super();
 		initialize();
 	}
-	
+
 	public void setModel(Philosopher philosopher) {
 		this.leftHand = philosopher.getLeftHand();
 		this.rightHand = philosopher.getRightHand();
@@ -39,7 +37,7 @@ public class SimplePhilosopherInterface extends JPanel implements InteractivityC
 
 	/**
 	 * This method initializes this
-	 * 
+	 *
 	 * @return void
 	 */
 	private void initialize() {
@@ -64,9 +62,9 @@ public class SimplePhilosopherInterface extends JPanel implements InteractivityC
 	}
 
 	/**
-	 * This method initializes takeLeftChopstickButton	
-	 * 	
-	 * @return javax.swing.JButton	
+	 * This method initializes takeLeftChopstickButton
+	 *
+	 * @return javax.swing.JButton
 	 */
 	private JButton getTakeLeftChopstickButton() {
 		if (takeLeftChopstickButton == null) {
@@ -82,9 +80,9 @@ public class SimplePhilosopherInterface extends JPanel implements InteractivityC
 	}
 
 	/**
-	 * This method initializes takeRightChopstickButton	
-	 * 	
-	 * @return javax.swing.JButton	
+	 * This method initializes takeRightChopstickButton
+	 *
+	 * @return javax.swing.JButton
 	 */
 	private JButton getTakeRightChopstickButton() {
 		if (takeRightChopstickButton == null) {
@@ -100,9 +98,9 @@ public class SimplePhilosopherInterface extends JPanel implements InteractivityC
 	}
 
 	/**
-	 * This method initializes releaseRightChopstickButton	
-	 * 	
-	 * @return javax.swing.JButton	
+	 * This method initializes releaseRightChopstickButton
+	 *
+	 * @return javax.swing.JButton
 	 */
 	private JButton getReleaseRightChopstickButton() {
 		if (releaseRightChopstickButton == null) {
@@ -119,9 +117,9 @@ public class SimplePhilosopherInterface extends JPanel implements InteractivityC
 	}
 
 	/**
-	 * This method initializes releaseLeftChopstickButton	
-	 * 	
-	 * @return javax.swing.JButton	
+	 * This method initializes releaseLeftChopstickButton
+	 *
+	 * @return javax.swing.JButton
 	 */
 	private JButton getReleaseLeftChopstickButton() {
 		if (releaseLeftChopstickButton == null) {
@@ -142,7 +140,7 @@ public class SimplePhilosopherInterface extends JPanel implements InteractivityC
 		updateHandButtons(rightHandState, takeRightChopstickButton, releaseRightChopstickButton);
 		System.out.println("Philosopher state changed to " + philosopherState);
 	}
-	
+
 	private void updateHandButtons(Philosopher.Hand.State state, JButton takeButton, JButton releaseButton) {
 		if (state == Philosopher.Hand.State.EMPTY) {
 			takeButton.setEnabled(true);

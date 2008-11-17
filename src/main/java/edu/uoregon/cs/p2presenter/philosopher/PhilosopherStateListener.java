@@ -1,5 +1,3 @@
-/* $Id$ */
-
 package edu.uoregon.cs.p2presenter.philosopher;
 
 import com.ryanberdeen.djava.Asynchronous;
